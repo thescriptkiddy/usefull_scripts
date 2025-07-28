@@ -76,6 +76,7 @@ def get_valid_files(folder: Path, allowed_ext: Optional[Sequence[str]] = ("jpg",
 
 
 def rename_files():
+    """Renames files based on a prefix"""
     prefix = get_prefix()
     valid_files = get_valid_files(FOLDER)
     renamed_files = []
@@ -205,12 +206,6 @@ def optimize_for_web():
 
     write_iptc_metadata(mapping_list)
 
-    # print(f"{compressed_count} Images compressed ✅ ",
-    #       f"{failed_count} Files failed ❌",
-    #       f"{skipped_count} Skipped files ⚠️",
-    #       sep="\n"
-    #       )
-
 
 # Orchestrator
-# optimize_for_web()
+optimize_for_web()
