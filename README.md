@@ -1,0 +1,1 @@
+This repository is just a container for small scripts that I build to learn python.
