@@ -1,0 +1,50 @@
+| Feature                                         | Status                      |
+| ----------------------------------------------- | --------------------------- |
+| 📁 Ordner festlegen (FOLDER)                    | ✅ Fertig                    |
+| 📁 web\_size-Ordner anlegen                     | ✅ Fertig                    |
+| 📝 Dateien umbenennen (prefix+UUID)             | ✅ Fertig                    |
+| 📦 Dateitypen-Filterung                         | ✅ Fertig (case-insensitive) |
+| ❌ Hidden Files ignorieren                      | ✅ Fertig                    |
+| 📷 JPGs komprimieren (quality=85)               | ✅ Fertig                    |
+| 📊 Mapping-List                                 | ✅ Fertig                    |
+| ⚠️ Error-Handling                               | ✅ Fertig                    |
+| 📊 Progress bar                                 | ✅ Fertig
+|    Add Meta Data                                 | 🚫 Noch nicht
+| ----------------------------------------------- | --------------------------- |
+
+| 🌐 FTP-Upload                                   | 🚫 On Hold                   |
+| 🖼️ PNGs skalieren (resize\_images\_by\_pixels)  | 🔄 Platzhalter vorhanden    |
+| 📐 calculate\_scale\_factor                     | 🔄 Platzhalter vorhanden    |
+| 📥 PNG → JPG-Konvertierung                      | 🚫 Noch nicht               |
+
+
+TODO
+- Implement default value setting, default_values for each user-input if not provided --> datetime ?
+- Keywords by user input
+- abstract by user input
+- by_line (CR) by user input
+
+- Implement Error handling
+- Add IPTC Data to mapping_list
+
+
+- generate new image title based on date+postfix+int ?
+
+CLI-Tool
+- If user does not provide an input, and presses enter, for each of the required fields a default value is set
+- default values are defined as global_variables, example--> DATE = CURRENT_DATE = datetime.datetime.now().strftime("yyyy-mm-dd")
+- Ask user to choose a feature: Example 1 = rename files, 2 = optimize-for-web
+
+
+
+
+META DATA
+
+ALTTEXT = wie Beschriftung - oder umkekehrt
+TITLE = Dateiname, da immer individuell generiert
+BESCHRIFTUNG = Einzeiliger Text zum Bild, in meinem Fall immer gleich
+BESCHREIBUNG = Mehrzeiliger Text zum Bild, in meinem Fall immer gleich
+DATEI-KATEGORIE = interessant zur Filterung
+DATEI-SCHLAGWÖRTER = gut für SEO
+
+r
