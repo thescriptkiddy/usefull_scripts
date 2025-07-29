@@ -3,6 +3,7 @@ RESIZE_WIDTH = 800  # px
 RESIZE_HEIGHT = 600  # px
 MAX_FILESIZE = 2.0
 
+
 def calculate_scale_factor():
     """Helper function for resize / compress PNG images"""
     pass

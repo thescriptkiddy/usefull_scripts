@@ -47,4 +47,26 @@ BESCHREIBUNG = Mehrzeiliger Text zum Bild, in meinem Fall immer gleich
 DATEI-KATEGORIE = interessant zur Filterung
 DATEI-SCHLAGWÖRTER = gut für SEO
 
-r
+# myproject/pipeline.py
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Callable
+
+from myproject.rename_files import rename_files
+from myproject.compress import compress_file
+
+@dataclass
+class Pipeline:
+    source: Path
+    output_dir: Path
+    rename: Callable[[Path, Path], Path] = rename_files
+    compress: Callable[[Path, Path], None] = compress_file
+
+    def write_metadata(self, file_path: Path) -> None:
+        # call your PyExifTool helper here
+        ...
+
+    def run(self) -> None:
+        renamed = self.rename(self.source, self.output_dir)
+        self.compress(renamed, self.output_dir / renamed.name)
+        self.write_metadata(self.output_dir / renamed.name)

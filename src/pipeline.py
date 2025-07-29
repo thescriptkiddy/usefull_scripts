@@ -1,29 +1,27 @@
-import os
-from pathlib import Path
-from typing import Iterable, Sequence, Optional
-import uuid
-import datetime
-from pprint import pprint
-import exiftool
-from PIL import Image
 from tqdm import tqdm
-
-FOLDER = Path("/Users/simonhardt/Desktop/MGD_Bilder")
-# TODO Refactor ALLOWED_EXT -- it should be a filter
-ALLOWED_EXT = ["jpg", "jpeg", "JPG"]
-
-FIXED_IMAGE_TAG = "motogymkhana"
-
-# DEFAULT VALUES FOR USER INPUTS
-DEFAULT_LOCATION = "ConeCity"
-CAPTION_ABSTRACT = ("MotoGymkhana Training des Moto Gymkhana Deutschland e.V., Motorrad-Training, Sicherheitstraining, "
-                    "Motorrad, Huetchenspiel und mehr.")
-KEYWORDS = ["Motogymkhana", "2025", "Vereinstraining", "Sicherheitstraining", "Motorrad",
-            "Motorrad-Training"]
-COPYRIGHT = "MotoGymkhana Deutschland e.V."
+from dataclasses import dataclass
+from pathlib import Path
+from typing import Callable, List, Any, Tuple, Optional, Dict
+from src.compress import compress_image
+from src.rename_files import rename_files
+from src.utils import prepare_web_folder, write_iptc_metadata
 
 
+# NOT IN USE RIGHT NOW. It is here for learning purposes only.
+@dataclass
+class Pipeline:
+    source: Path
+    output_dir: Path
+    rename: Callable[[], List[Dict[str, Any]]] = rename_files
+    compress: Callable[[Dict[str, Any]], Tuple[bool, Optional[str], str]] = compress_image
+    write_metadata: Callable[[str], None] = write_iptc_metadata
 
+    def run(self):
+        for item in self.rename():
+            ok, err, path = self.compress(item)
+            if not ok:
+                continue  # or log err
+            self.write_metadata(path)
 
 
 def optimize_for_web():
